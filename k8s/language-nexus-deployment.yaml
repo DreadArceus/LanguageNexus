@@ -19,3 +19,12 @@ spec:
           envFrom:
             - configMapRef:
                 name: ln-ports
+        - name: typescript
+          image: ln-typescript
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ln-ports
+                  key: TYPESCRIPT_PORT

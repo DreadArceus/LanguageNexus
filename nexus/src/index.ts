@@ -5,7 +5,7 @@ const main = async () => {
   const app = express();
 
   app.listen(nexusPort, () => {
-    console.log(`Nexus is listening on http://localhost:${nexusPort}`);
+    console.log(`Nexus is listening on ${nexusPort}`);
   });
 };
 

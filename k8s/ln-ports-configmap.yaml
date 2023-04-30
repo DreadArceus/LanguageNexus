@@ -4,3 +4,4 @@ metadata:
   name: ln-ports
 data:
   NEXUS_PORT: "4000"
+  TYPESCRIPT_PORT: "4001"
