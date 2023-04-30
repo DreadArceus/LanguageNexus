@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: language-nexus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: language-nexus
+  template:
+    metadata:
+      labels:
+        app: language-nexus
+    spec:
+      containers:
+        - name: nexus
+          image: ln-nexus
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: ln-ports

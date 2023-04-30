@@ -1,12 +1,11 @@
 import express from "express";
+import { nexusPort } from "./constants";
 
 const main = async () => {
   const app = express();
 
-  app.listen(process.env.port || 4000, () => {
-    console.log(
-      `Nexus is listening on http://localhost:${process.env.port || 4000}`
-    );
+  app.listen(nexusPort, () => {
+    console.log(`Nexus is listening on http://localhost:${nexusPort}`);
   });
 };
 

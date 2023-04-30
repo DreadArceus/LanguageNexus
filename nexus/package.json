@@ -11,7 +11,8 @@
   },
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon dist/index.js"
+    "dev": "nodemon dist/index.js",
+    "start": "node dist/index.js"
   },
   "author": "DreadArceus",
   "license": "MIT"
