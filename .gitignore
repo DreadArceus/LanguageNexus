@@ -4,5 +4,6 @@ dist
 
 yarn.lock
 package-lock.json
+Gemfile.lock
 .DS_Store
 .vscode
