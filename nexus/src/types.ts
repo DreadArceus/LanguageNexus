@@ -1,1 +1,1 @@
-export type languages = "TypeScript";
+export type languages = "TypeScript" | "Python";

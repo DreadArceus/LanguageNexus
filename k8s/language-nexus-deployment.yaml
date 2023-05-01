@@ -28,3 +28,12 @@ spec:
                 configMapKeyRef:
                   name: ln-ports
                   key: TYPESCRIPT_PORT
+        - name: python
+          image: ln-python
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ln-ports
+                  key: PYTHON_PORT

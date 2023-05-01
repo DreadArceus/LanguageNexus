@@ -5,3 +5,4 @@ metadata:
 data:
   NEXUS_PORT: "4000"
   TYPESCRIPT_PORT: "4001"
+  PYTHON_PORT: "4002"
