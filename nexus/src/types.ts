@@ -1,1 +1,1 @@
-export type languages = "TypeScript" | "Python" | "Ruby";
+export type languages = "TypeScript" | "Python" | "Ruby" | "Go";

@@ -7,9 +7,11 @@ export const typescriptPort = __prod__
   : 4001;
 export const pythonPort = __prod__ ? Number(process.env.PYTHON_PORT) : 4002;
 export const rubyPort = __prod__ ? Number(process.env.RUBY_PORT) : 4003;
+export const goPort = __prod__ ? Number(process.env.GO_PORT) : 4004;
 
 export const langInfo: Record<languages, number> = {
   TypeScript: typescriptPort,
   Python: pythonPort,
   Ruby: rubyPort,
+  Go: goPort,
 };

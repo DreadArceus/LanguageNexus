@@ -46,3 +46,12 @@ spec:
                 configMapKeyRef:
                   name: ln-ports
                   key: RUBY_PORT
+        - name: go
+          image: ln-go
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ln-ports
+                  key: GO_PORT
