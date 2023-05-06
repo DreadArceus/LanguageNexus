@@ -7,7 +7,7 @@ app.get("/ping", (_, res) => {
   res.send({ result: "pong" });
 });
 
-const main = async () => {
+const main = async (): Promise<void> => {
   app.listen(port, () => {
     console.log(`TypeScript is listening on ${port}`);
   });

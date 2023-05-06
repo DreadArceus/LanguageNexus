@@ -12,7 +12,7 @@ describe("Constants", () => {
     process.env.NODE_ENV = "production";
     process.env.PORT = "4090";
 
-    const productionPort = require("../constants.ts").port;
+    const productionPort = require("../constants.ts").port; // eslint-disable-line @typescript-eslint/no-var-requires
     expect(productionPort).toBe(Number(process.env.PORT));
   });
 
@@ -20,7 +20,7 @@ describe("Constants", () => {
     process.env.NODE_ENV = "development";
     process.env.PORT = "4090";
 
-    const developmentPort = require("../constants.ts").port;
+    const developmentPort = require("../constants.ts").port; // eslint-disable-line @typescript-eslint/no-var-requires
     expect(developmentPort).toBe(4001);
   });
 });
