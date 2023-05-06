@@ -37,3 +37,14 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t dreadarceus/ln-ts:latest .
+
+      - name: Log in to Docker Hub
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Push TypeScript API Docker image
+        if: github.ref == 'refs/heads/main'
+        run: docker push dreadarceus/ln-ts:latest
