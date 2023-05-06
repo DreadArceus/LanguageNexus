@@ -1,8 +1,9 @@
+"""Module for managing and converting environment variables to constants."""
 import os
 
-__PROD__ = os.getenv('PYTHON_ENV') == 'production'
+PROD = os.getenv('PYTHON_ENV') == 'production'
 
-if __PROD__:
+if PROD:
     PORT = os.getenv('PORT')
     if PORT is None:
         raise ValueError(

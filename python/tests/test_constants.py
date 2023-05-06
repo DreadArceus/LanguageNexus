@@ -1,11 +1,13 @@
+"""Module for testing app/constants."""
 import os
-import pytest
 import importlib
+import pytest
 import app.constants
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="function", name='_reset_env_vars')
 def reset_env_vars():
+    """Fixture for resetting the environment variables to their original state after each test"""
     original_python_env = os.getenv('PYTHON_ENV')
     original_port = os.getenv('PORT')
 
@@ -22,21 +24,25 @@ def reset_env_vars():
         os.environ['PORT'] = original_port
 
 
-def test_production_port(reset_env_vars):
+def test_production_port(_reset_env_vars):
+    """Function for testing the value of PROD and PORT in production"""
     os.environ['PYTHON_ENV'] = 'production'
     os.environ['PORT'] = '4090'
     importlib.reload(app.constants)
 
-    from app.constants import PORT as prod_port, __PROD__ as prod
+    # pylint: disable=import-outside-toplevel
+    from app.constants import PORT as prod_port, PROD as prod
     assert prod_port == int(os.environ['PORT'])
-    assert prod == True
+    assert prod is True
 
 
-def test_development_port(reset_env_vars):
+def test_development_port(_reset_env_vars):
+    """Function for testing the value of PROD and PORT when not in production"""
     os.environ['PYTHON_ENV'] = 'development'
     os.environ['PORT'] = '4090'
     importlib.reload(app.constants)
 
-    from app.constants import PORT as dev_port, __PROD__ as prod
+    # pylint: disable=import-outside-toplevel
+    from app.constants import PORT as dev_port, PROD as prod
     assert dev_port == 4002
-    assert prod == False
+    assert prod is False
