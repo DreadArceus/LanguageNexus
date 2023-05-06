@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from constants import PORT
+from .constants import PORT
 
 app = FastAPI()
 

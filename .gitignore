@@ -2,6 +2,8 @@ node_modules
 venv
 dist
 coverage
+.coverage
+.pytest_cache
 
 yarn.lock
 package-lock.json

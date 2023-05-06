@@ -1,3 +1,5 @@
 venv
+.pytest_cache
+.coverage
 Dockerfile
 .dockerignore
