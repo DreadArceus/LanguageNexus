@@ -32,8 +32,11 @@ jobs:
       - name: Lint code
         run: yarn lint
 
-      - name: Run tests
+      - name: Run tests and get coverage
         run: yarn test --coverage
+
+      - name: Fix coverage paths
+        run: sed 's/SF:/SF:.\/typescript\//g' ./coverage/lcov.info
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
