@@ -40,7 +40,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           root_dir: ./typescript
-          files: ./coverage/lcov.info
+          files: ./typescript/coverage/lcov.info
           flags: typescript
           name: codecov-umbrella
           fail_ci_if_error: true
