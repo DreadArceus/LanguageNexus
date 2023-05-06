@@ -39,13 +39,13 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          root_dir: ./typescript
+          directory: ./typescript
           files: ./typescript/coverage/lcov.info
           name: codecov-umbrella
           fail_ci_if_error: true
 
       - name: Build Docker image
-        run: docker build -t dreadarceus/ln-ts:latest .
+        run: docker build -t dreadarceus/ln-typescript:latest .
 
       - name: Log in to Docker Hub
         if: github.ref == 'refs/heads/main'
@@ -54,6 +54,6 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Push TypeScript API Docker image
+      - name: Push Docker image
         if: github.ref == 'refs/heads/main'
-        run: docker push dreadarceus/ln-ts:latest
+        run: docker push dreadarceus/ln-typescript:latest
