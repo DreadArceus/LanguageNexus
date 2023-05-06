@@ -1,4 +1,4 @@
-name: TypeScript API CI
+name: TypeScript API CI/CD
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - "typescript/**"
 
 jobs:
-  build_and_test:
+  lint_test_and_publish:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -33,7 +33,16 @@ jobs:
         run: yarn lint
 
       - name: Run tests
-        run: yarn test
+        run: yarn test --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./typescript/coverage/lcov.info
+          flags: typescript
+          name: codecov-umbrella
+          fail_ci_if_error: true
 
       - name: Build Docker image
         run: docker build -t dreadarceus/ln-ts:latest .
