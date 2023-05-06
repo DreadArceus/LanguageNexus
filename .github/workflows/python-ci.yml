@@ -35,11 +35,14 @@ jobs:
       - name: Run tests
         run: coverage run -m pytest
 
+      - name: Get coverage report
+        run: coverage xml
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./python/.coverage
+          files: ./python/coverage.xml
           name: codecov-umbrella
           fail_ci_if_error: true
 
