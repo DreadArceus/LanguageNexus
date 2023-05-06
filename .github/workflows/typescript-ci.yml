@@ -36,14 +36,14 @@ jobs:
         run: yarn test --coverage
 
       - name: Fix coverage paths
-        run: sed 's/SF:/SF:.\/typescript\//g' ./coverage/lcov.info
+        run: sed 's/SF:/SF:.\/typescript\//g' ./coverage/lcov.info > ./coverage/fixed_cov.info
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./typescript
-          files: ./typescript/coverage/lcov.info
+          files: ./typescript/coverage/fixed_cov.info
           name: codecov-umbrella
           fail_ci_if_error: true
 
