@@ -2,7 +2,7 @@ node_modules
 venv
 dist
 coverage
-.coverage
+coverage.xml
 .pytest_cache
 
 yarn.lock
