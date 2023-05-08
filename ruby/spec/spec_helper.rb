@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require_relative '../app/main'
 require 'rack/test'
 require 'rspec'

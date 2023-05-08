@@ -1,5 +1,7 @@
 spec
 .rspec
 .bundle
+.rubocop.yml
+coverage
 Dockerfile
 .dockerignore

@@ -4,6 +4,9 @@ gem 'sinatra'
 gem 'thin'
 
 group :test do
-  gem 'rspec'
-  gem 'rack-test'
+  gem 'rspec', require: false
+  gem 'rack-test', require: false
+  gem 'simplecov', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
 end

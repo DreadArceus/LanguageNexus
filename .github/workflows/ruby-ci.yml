@@ -1,0 +1,58 @@
+name: Ruby API CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "ruby/**"
+
+jobs:
+  lint_test_and_publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ruby
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Lint code
+        run: bundle exec rubocop
+
+      - name: Run tests and get coverage
+        run: bundle exec rspec ./spec
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./ruby/coverage/.resultset.json
+          name: codecov-umbrella
+          fail_ci_if_error: true
+
+      - name: Build Docker image
+        run: docker build -t dreadarceus/ln-ruby:latest .
+
+      - name: Log in to Docker Hub
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Push Docker image
+        if: github.ref == 'refs/heads/main'
+        run: docker push dreadarceus/ln-ruby:latest
