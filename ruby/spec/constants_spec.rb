@@ -1,23 +1,17 @@
+# frozen_string_literal: true
+
 require_relative '../app/constants'
 
 RSpec.describe 'Constants' do
-  before(:all) do
-    @original_verbose = $VERBOSE
-    $VERBOSE = nil
-  end
+  let(:original_verbose) { $VERBOSE }
 
-  after(:all) do
-    $VERBOSE = @original_verbose
-  end
+  before { $VERBOSE = nil }
+  after { $VERBOSE = original_verbose }
 
   describe 'IS_PROD' do
-    before(:each) do
-      @original_rack_env = ENV['RACK_ENV']
-    end
+    let(:original_rack_env) { ENV['RACK_ENV'] }
 
-    after(:each) do
-      ENV['RACK_ENV'] = @original_rack_env
-    end
+    after { ENV['RACK_ENV'] = original_rack_env }
 
     it 'is true when RACK_ENV is "production"' do
       ENV['RACK_ENV'] = 'production'
@@ -33,14 +27,12 @@ RSpec.describe 'Constants' do
   end
 
   describe 'PORT' do
-    before(:each) do
-      @original_rack_env = ENV['RACK_ENV']
-      @original_port = ENV['PORT']
-    end
+    let(:original_rack_env) { ENV['RACK_ENV'] }
+    let(:original_port) { ENV['PORT'] }
 
-    after(:each) do
-      ENV['RACK_ENV'] = @original_rack_env
-      ENV['PORT'] = @original_port
+    after do
+      ENV['RACK_ENV'] = original_rack_env
+      ENV['PORT'] = original_port
     end
 
     it 'equals the value of PORT environment variable when RACK_ENV is "production"' do
