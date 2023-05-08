@@ -9,5 +9,6 @@ coverage.xml
 yarn.lock
 package-lock.json
 Gemfile.lock
+.bundle
 .DS_Store
 .vscode

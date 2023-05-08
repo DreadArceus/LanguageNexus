@@ -5,7 +5,7 @@ WORKDIR /app
 ENV RACK_ENV production
 
 COPY Gemfile* ./
-RUN bundle install
+RUN bundle config set --local without 'test' && bundle install
 
 COPY . .
 
