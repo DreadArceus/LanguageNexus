@@ -7,9 +7,11 @@ import (
 )
 
 func main() {
+	cfg := config.NewConfig()
+
 	router := gin.Default()
 
 	routes.PingRoutes(router)
 
-	router.Run("localhost:" + config.Port)
+	router.Run("localhost:" + cfg.Port)
 }

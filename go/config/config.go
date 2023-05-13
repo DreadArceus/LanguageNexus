@@ -4,21 +4,21 @@ import (
 	"os"
 )
 
-var (
+type Config struct {
 	Port string
-)
+}
 
-func init() {
+func NewConfig() *Config {
 	mode := os.Getenv("GIN_MODE")
 
 	if mode == "release" {
 		portValue, found := os.LookupEnv("PORT")
 		if found {
-			Port = portValue
+			return &Config{Port: portValue}
 		} else {
 			panic("The PORT environment variable is not set in production mode!")
 		}
 	} else {
-		Port = "4004"
+		return &Config{Port: "4004"}
 	}
 }
