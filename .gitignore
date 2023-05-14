@@ -3,6 +3,7 @@ venv
 dist
 coverage
 .coverage
+coverage.txt
 coverage.xml
 .pytest_cache
 

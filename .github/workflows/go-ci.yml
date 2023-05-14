@@ -1,0 +1,60 @@
+name: Go API CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "go/**"
+
+jobs:
+  lint_test_and_publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./go
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.20
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Lint code
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+
+      - name: Run tests and get coverage
+        run: go test ./... -coverprofile=coverage.txt
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./go/coverage.txt
+          name: codecov-umbrella
+          fail_ci_if_error: true
+
+      - name: Build Docker image
+        run: docker build -t dreadarceus/ln-go:latest .
+
+      - name: Log in to Docker Hub
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Push Docker image
+        if: github.ref == 'refs/heads/main'
+        run: docker push dreadarceus/ln-go:latest
