@@ -1,1 +1,6 @@
 require: rubocop-rspec
+
+AllCops:
+  NewCops: enable
+Style/FetchEnvVar:
+  Enabled: false

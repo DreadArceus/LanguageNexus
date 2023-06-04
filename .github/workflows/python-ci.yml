@@ -33,10 +33,10 @@ jobs:
         run: pylint **/*.py
 
       - name: Run tests
-        run: coverage run -m pytest
+        run: coverage run --omit="./tests/**" -m pytest
 
       - name: Get coverage report
-        run: coverage xml
+        run: coverage xml --skip-empty
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

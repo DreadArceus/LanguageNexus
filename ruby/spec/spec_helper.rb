@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add filter '/spec/'
+end
 
 require_relative '../app/main'
 require 'rack/test'
