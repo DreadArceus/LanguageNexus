@@ -33,6 +33,7 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
+          working-directory: ./go
 
       - name: Run tests and get coverage
         run: go test ./... -coverprofile=coverage.txt
