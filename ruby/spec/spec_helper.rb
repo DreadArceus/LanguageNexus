@@ -2,7 +2,7 @@
 
 require 'simplecov'
 SimpleCov.start do
-  add filter '/spec/'
+  add_filter '/spec/'
 end
 
 require_relative '../app/main'
