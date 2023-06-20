@@ -20,7 +20,7 @@ app.get(
 
     const promises = Object.entries(langInfo).map(async ([lang, port]) => {
       try {
-        const res = await fetch(`http://localhost:${port}/ping`);
+        const res = await fetch(`http://127.0.0.1:${port}/ping`);
         const data = await res.json();
         results[lang as languages] = data;
       } catch (err) {
