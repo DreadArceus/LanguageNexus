@@ -25,7 +25,7 @@ app.get(
         results[lang as languages] = data;
       } catch (err) {
         console.error(err);
-        results[lang as languages] = { error: "Unable to reach API" };
+        results[lang as languages] = { error: `Unable to reach ${lang} API` };
       }
     });
 
