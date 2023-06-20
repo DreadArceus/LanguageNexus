@@ -62,11 +62,11 @@ jobs:
 
       - name: Forward port
         run: |
-          kubectl port-forward service/nexus-service 8080:80 &
+          kubectl port-forward service/nexus-service 4000:4000 &
           sleep 5
 
       - run: |
-          curl -i http://localhost:8080/
+          curl -i http://localhost:4000/
 
-      # - name: Integration Testing
-      #   run: yarn test
+      - name: Integration Testing
+        run: yarn test
