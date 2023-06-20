@@ -53,6 +53,14 @@ jobs:
           kubectl get pods -n kube-system
           echo "current-context:" $(kubectl config current-context)
 
+      - name: Wait for pipelines to finish
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: ${{ github.ref }}
+          check-regexp: ^[a-z]+_pipeline$
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
       - name: Start Deployment
         run: |
           kubectl apply -f ../k8s/ln-ports-configmap.yaml

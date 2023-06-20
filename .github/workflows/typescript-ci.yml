@@ -13,7 +13,7 @@ on:
       - "typescript/**"
 
 jobs:
-  lint_test_and_publish:
+  ts_pipeline:
     runs-on: ubuntu-latest
     defaults:
       run:
