@@ -13,3 +13,5 @@ export const langInfo: Record<languages, number> = {
   Ruby: rubyPort,
   Go: goPort,
 };
+
+export const routes = ["ping"];
