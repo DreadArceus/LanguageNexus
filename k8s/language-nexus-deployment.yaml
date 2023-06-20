@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nexus
-          image: dreadarcues/ln-nexus
+          image: dreadarceus/ln-nexus
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
