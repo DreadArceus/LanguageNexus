@@ -44,8 +44,8 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: docker push dreadarceus/ln-nexus:latest
 
-      - name: Set up KinD (Kubernetes in Docker)
-        uses: engineerd/setup-kind@v0.5.0
+      - name: Testing on a k8s Kind Cluster
+        uses: helm/kind-action@v1.4.0
 
       - name: Testing
         run: |
