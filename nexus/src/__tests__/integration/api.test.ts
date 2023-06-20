@@ -1,12 +1,10 @@
-import request from "supertest";
-import { app } from "../../index";
-
 describe("Nexus API Endpoints", () => {
   test("GET /ping responds with pong for all languages", async () => {
-    const response = await request(app).get("/ping");
+    const response = await fetch("http://localhost:4000/ping");
     expect(response.status).toBe(200);
 
-    Object.values(response.body).forEach((data) => {
+    const json = await response.json();
+    Object.values(json.body).forEach((data) => {
       expect(data).toHaveProperty("result");
 
       const typedData = data as Record<string, unknown>;
