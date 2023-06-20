@@ -4,7 +4,7 @@ describe("Nexus API Endpoints", () => {
     expect(response.status).toBe(200);
 
     const json = await response.json();
-    Object.values(json.body).forEach((data) => {
+    Object.values(json).forEach((data) => {
       expect(data).toHaveProperty("result");
 
       const typedData = data as Record<string, unknown>;
