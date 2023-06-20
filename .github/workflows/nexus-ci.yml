@@ -68,5 +68,17 @@ jobs:
       - run: |
           curl -i http://localhost:4000/
 
-      - name: Integration Testing
+      - name: Run Unit and Integration Tests
         run: yarn test
+
+      - name: Fix coverage paths
+        run: sed 's/SF:/SF:.\/nexus\//g' ./coverage/lcov.info > ./coverage/fixed_cov.info
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./nexus
+          files: ./nexus/coverage/fixed_cov.info
+          name: codecov-umbrella
+          fail_ci_if_error: true

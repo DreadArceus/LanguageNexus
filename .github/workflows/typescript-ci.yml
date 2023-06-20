@@ -33,7 +33,7 @@ jobs:
         run: yarn lint
 
       - name: Run tests and get coverage
-        run: yarn test --coverage
+        run: yarn test
 
       - name: Fix coverage paths
         run: sed 's/SF:/SF:.\/typescript\//g' ./coverage/lcov.info > ./coverage/fixed_cov.info
