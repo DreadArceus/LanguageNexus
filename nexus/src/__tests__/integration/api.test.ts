@@ -9,7 +9,7 @@ describe("Nexus API Endpoints", () => {
     Object.values(response.body).forEach((data) => {
       expect(data).toHaveProperty("result");
 
-      const typedData = data as Object;
+      const typedData = data as Record<string, unknown>;
       if ("result" in typedData) expect(typedData.result).toEqual("pong");
     });
   });
