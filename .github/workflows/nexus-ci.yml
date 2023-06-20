@@ -60,7 +60,7 @@ jobs:
           kubectl apply -f ../k8s/nexus-service.yaml
 
       - run: |
-          curl -i http://localhost:4000/
+          curl -i http://localhost:80/
 
       # - name: Integration Testing
       #   run: yarn test
