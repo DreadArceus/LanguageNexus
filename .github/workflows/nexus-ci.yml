@@ -53,15 +53,20 @@ jobs:
           kubectl get pods -n kube-system
           echo "current-context:" $(kubectl config current-context)
 
-      - name: Startup Everything
+      - name: Start Deployment
         run: |
           kubectl apply -f ../k8s/ln-ports-configmap.yaml
           kubectl apply -f ../k8s/language-nexus-deployment.yaml
           kubectl apply -f ../k8s/nexus-service.yaml
           kubectl wait --for=condition=available --timeout=30s deployment/language-nexus
 
+      - name: Forward port
+        run: |
+          kubectl port-forward service/nexus-service 8080:80 &
+          sleep 5
+
       - run: |
-          curl -i http://localhost:80/
+          curl -i http://localhost:8080/
 
       # - name: Integration Testing
       #   run: yarn test
