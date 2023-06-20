@@ -58,6 +58,7 @@ jobs:
           kubectl apply -f ../k8s/ln-ports-configmap.yaml
           kubectl apply -f ../k8s/language-nexus-deployment.yaml
           kubectl apply -f ../k8s/nexus-service.yaml
+          kubectl wait --for=condition=available --timeout=30s deployment/language-nexus
 
       - run: |
           curl -i http://localhost:80/
