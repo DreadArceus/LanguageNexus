@@ -14,13 +14,13 @@ spec:
     spec:
       containers:
         - name: nexus
-          image: ln-nexus
+          image: dreadarcues/ln-nexus
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
                 name: ln-ports
         - name: typescript
-          image: ln-typescript
+          image: dreadarceus/ln-typescript
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
@@ -29,7 +29,7 @@ spec:
                   name: ln-ports
                   key: TYPESCRIPT_PORT
         - name: python
-          image: ln-python
+          image: dreadarceus/ln-python
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
@@ -38,7 +38,7 @@ spec:
                   name: ln-ports
                   key: PYTHON_PORT
         - name: ruby
-          image: ln-ruby
+          image: dreadarceus/ln-ruby
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
@@ -47,7 +47,7 @@ spec:
                   name: ln-ports
                   key: RUBY_PORT
         - name: go
-          image: ln-go
+          image: dreadarceus/ln-go
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
