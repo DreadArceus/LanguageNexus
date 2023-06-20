@@ -44,14 +44,23 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: docker push dreadarceus/ln-nexus:latest
 
-      - name: Testing on a k8s Kind Cluster
+      - name: Setup KinD
         uses: helm/kind-action@v1.4.0
 
-      - name: Testing
+      - name: Verify KinD setup
         run: |
           kubectl cluster-info
           kubectl get pods -n kube-system
           echo "current-context:" $(kubectl config current-context)
+
+      - name: Startup Everything
+        run: |
+          kubectl apply -f ../k8s/ln-ports-configmap.yaml
+          kubectl apply -f ../k8s/language-nexus-deployment.yaml
+          kubectl apply -f ../k8s/nexus-service.yaml
+
+      - run: |
+          curl -i http://localhost:4000/
 
       # - name: Integration Testing
       #   run: yarn test
