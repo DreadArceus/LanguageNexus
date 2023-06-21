@@ -25,12 +25,13 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 expressjs
+
 COPY --from=builder --chown=expressjs:nodejs /app/dist ./dist
 COPY --from=deps /prod/node_modules ./node_modules
 COPY package.json ./
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 expressjs
 USER expressjs
 
 CMD ["yarn", "start"]
