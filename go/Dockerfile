@@ -15,4 +15,8 @@ ENV GIN_MODE release
 
 COPY --from=build /app/api ./
 
+RUN addgroup --system --gid 1004 golang
+RUN adduser --system --uid 1004 gin
+USER gin
+
 CMD ["./api"]
