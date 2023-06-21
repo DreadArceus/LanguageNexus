@@ -9,8 +9,8 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "typescript/**"
+    # paths:
+    #   - "typescript/**"
 
 jobs:
   ts_pipeline:
@@ -47,6 +47,7 @@ jobs:
           directory: ./typescript
           files: ./typescript/coverage/fixed_cov.info
           name: codecov-umbrella
+          flags: carry
           fail_ci_if_error: true
 
       - name: Build Docker image

@@ -9,8 +9,8 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "python/**"
+    # paths:
+    #   - "python/**"
 
 jobs:
   py_pipeline:
@@ -46,6 +46,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./python/coverage.xml
           name: codecov-umbrella
+          flags: carry
           fail_ci_if_error: true
 
       - name: Build Docker image

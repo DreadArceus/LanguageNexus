@@ -9,8 +9,8 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "go/**"
+    # paths:
+    #   - "go/**"
 
 jobs:
   go_pipeline:
@@ -46,6 +46,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./go/coverage.txt
           name: codecov-umbrella
+          flags: carry
           fail_ci_if_error: true
 
       - name: Build Docker image

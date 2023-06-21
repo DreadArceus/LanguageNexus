@@ -90,4 +90,5 @@ jobs:
           directory: ./nexus
           files: ./nexus/coverage/fixed_cov.info
           name: codecov-umbrella
+          flags: carry
           fail_ci_if_error: true

@@ -9,8 +9,8 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "ruby/**"
+    # paths:
+    #   - "ruby/**"
 
 jobs:
   rb_pipeline:
@@ -43,6 +43,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./ruby/coverage/.resultset.json
           name: codecov-umbrella
+          flags: carry
           fail_ci_if_error: true
 
       - name: Build Docker image
