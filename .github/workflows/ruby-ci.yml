@@ -9,8 +9,8 @@ on:
   pull_request:
     branches:
       - main
-    # paths:
-    #   - "ruby/**"
+    paths:
+      - "ruby/**"
 
 jobs:
   rb_pipeline:

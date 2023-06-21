@@ -9,8 +9,8 @@ on:
   pull_request:
     branches:
       - main
-    # paths:
-    #   - "go/**"
+    paths:
+      - "go/**"
 
 jobs:
   go_pipeline:

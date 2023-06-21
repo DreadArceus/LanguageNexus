@@ -9,8 +9,8 @@ on:
   pull_request:
     branches:
       - main
-    # paths:
-    #   - "python/**"
+    paths:
+      - "python/**"
 
 jobs:
   py_pipeline:
