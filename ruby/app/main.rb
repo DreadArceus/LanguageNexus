@@ -3,6 +3,7 @@
 require 'sinatra'
 require 'json'
 require_relative 'constants'
+require_relative 'routes/normalize'
 
 set :port, PORT
 

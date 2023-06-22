@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'API Endpoints', type: :request do
+RSpec.describe 'Health check', type: :request do
   include Rack::Test::Methods
 
   def app

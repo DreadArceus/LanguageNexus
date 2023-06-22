@@ -8,7 +8,7 @@ describe("API Endpoints", () => {
     expect(response.body).toEqual({ result: "pong" });
   });
 
-  test("POST /normalize should normalize data", async () => {
+  test("POST /normalize should normalize valid data", async () => {
     const validData = [
       [10, 20, 30, 40, 50],
       [10.5, 20.5, 30.5, 40.5, 50.5],
