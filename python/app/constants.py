@@ -1,4 +1,4 @@
-"""Module for managing and converting environment variables to constants."""
+"""Manages and converts environment variables to constants."""
 import os
 
 PROD = os.getenv('PYTHON_ENV') == 'production'

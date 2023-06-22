@@ -1,4 +1,4 @@
-"""Module for testing app/constants."""
+"""Test cases for app/constants."""
 import os
 import importlib
 import pytest
@@ -25,7 +25,7 @@ def reset_env_vars():
 
 
 def test_production_port(_reset_env_vars):
-    """Function for testing the value of PROD and PORT in production"""
+    """Tests the value of PROD and PORT in production"""
     os.environ['PYTHON_ENV'] = 'production'
     os.environ['PORT'] = '4090'
     importlib.reload(app.constants)
@@ -37,7 +37,7 @@ def test_production_port(_reset_env_vars):
 
 
 def test_development_port(_reset_env_vars):
-    """Function for testing the value of PROD and PORT when not in production"""
+    """Tests the value of PROD and PORT when not in production"""
     os.environ['PYTHON_ENV'] = 'development'
     os.environ['PORT'] = '4090'
     importlib.reload(app.constants)

@@ -1,8 +1,11 @@
-"""Module for initializing the FastAPI app."""
+"""Initializes the FastAPI app."""
 from fastapi import FastAPI
 from .constants import PORT
+from .routes import normalize
 
 app = FastAPI()
+
+app.include_router(normalize.router)
 
 
 @app.get("/ping")
