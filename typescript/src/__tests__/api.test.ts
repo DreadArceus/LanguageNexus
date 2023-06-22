@@ -33,12 +33,12 @@ describe("API Endpoints", () => {
     expect(response.body).toEqual({ normalizedData: [] });
   });
 
-  test("POST /normalize should return error for invalid data", async () => {
+  test("POST /normalize should return an error for invalid data", async () => {
     const invalidData = [[10, 20, "30", 40, 50], "yeah"];
 
     for (const data of invalidData) {
       const response = await request(app).post("/normalize").send({ data });
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(422);
       expect(response.body).toEqual({
         error: "Input must be an array of numbers.",
       });

@@ -5,7 +5,7 @@ router.post("/normalize", (req, res) => {
   const data = req.body.data;
 
   if (!Array.isArray(data) || data.some((item) => typeof item !== "number")) {
-    res.status(400).send({ error: "Input must be an array of numbers." });
+    res.status(422).send({ error: "Input must be an array of numbers." });
     return;
   }
 
