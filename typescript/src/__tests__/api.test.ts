@@ -9,12 +9,18 @@ describe("API Endpoints", () => {
   });
 
   test("POST /normalize should normalize data", async () => {
-    const data = [10, 20, 30, 40, 50];
-    const response = await request(app).post("/normalize").send({ data });
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      normalizedData: [0, 0.25, 0.5, 0.75, 1],
-    });
+    const validData = [
+      [10, 20, 30, 40, 50],
+      [10.5, 20.5, 30.5, 40.5, 50.5],
+    ];
+
+    for (const data of validData) {
+      const response = await request(app).post("/normalize").send({ data });
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({
+        normalizedData: [0, 0.25, 0.5, 0.75, 1],
+      });
+    }
   });
 
   test("POST /normalize should not break for an array with one unique element", async () => {
