@@ -26,6 +26,13 @@ describe("API Endpoints", () => {
     });
   });
 
+  test("POST /normalize should not break for an empty array", async () => {
+    const data: number[] = [];
+    const response = await request(app).post("/normalize").send({ data });
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ normalizedData: [] });
+  });
+
   test("POST /normalize should return error for invalid data", async () => {
     const invalidData = [[10, 20, "30", 40, 50], "yeah"];
 
