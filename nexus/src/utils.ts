@@ -1,4 +1,6 @@
-export const constructPostOptions = (body: Record<string, unknown>) => {
+export const constructPostOptions = (
+  body: Record<string, unknown>
+): RequestInit => {
   return {
     method: "POST",
     body: JSON.stringify(body),
