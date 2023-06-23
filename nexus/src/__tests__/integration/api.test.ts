@@ -1,3 +1,4 @@
+import { constructPostOptions } from "src/utils";
 import type { Stats } from "../../types";
 
 describe("Nexus API Endpoints", () => {
@@ -17,12 +18,10 @@ describe("Nexus API Endpoints", () => {
   });
 
   test("POST /normalize works for all languages", async () => {
-    const response = await fetch("http://localhost:4000/normalize", {
-      method: "POST",
-      body: JSON.stringify({
-        data: [1, 2, 3, 9],
-      }),
-    });
+    const response = await fetch(
+      "http://localhost:4000/normalize",
+      constructPostOptions({ data: [1, 2, 3, 9] })
+    );
     expect(response.status).toBe(200);
 
     const { results, stats } = await response.json();

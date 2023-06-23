@@ -5,6 +5,7 @@ import { apiHandler } from "./handlers/apiHandler";
 
 export const app = express();
 
+app.use(express.json());
 for (const route of getRoutes)
   app.get(`/${route}`, asyncHandler(apiHandler(route, "GET")));
 for (const route of postRoutes)

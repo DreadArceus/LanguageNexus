@@ -1,6 +1,7 @@
 import type { Languages, RequestMethod, Stats } from "../types";
 import type { Request, Response, NextFunction } from "express";
 import { langInfo } from "../constants";
+import { constructPostOptions } from "src/utils";
 
 export const apiHandler =
   (
@@ -15,11 +16,9 @@ export const apiHandler =
       const lang = rawLang as Languages;
       try {
         const startTime = Date.now();
-        const fetchOptions =
-          method === "POST" ? { method: "POST", body: req.body } : {};
         const res = await fetch(
           `http://127.0.0.1:${port}/${route}`,
-          fetchOptions
+          method === "POST" ? constructPostOptions(req.body) : {}
         );
         const endTime = Date.now();
         const data = await res.json();
