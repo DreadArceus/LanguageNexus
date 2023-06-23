@@ -14,6 +14,7 @@ func main() {
 	router := gin.Default()
 
 	routes.PingRoutes(router)
+	routes.NormalizeRoutes(router)
 
 	err := router.Run("localhost:" + cfg.Port)
 	if err != nil {
