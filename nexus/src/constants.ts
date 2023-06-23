@@ -14,4 +14,5 @@ export const langInfo: Record<languages, number> = {
   Go: goPort,
 };
 
-export const routes = ["ping"];
+export const getRoutes = ["ping"];
+export const postRoutes = ["normalize"];

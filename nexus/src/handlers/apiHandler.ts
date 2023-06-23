@@ -1,20 +1,26 @@
-import type { languages } from "../types";
+import type { Languages, RequestMethod, Stats } from "../types";
 import type { Request, Response, NextFunction } from "express";
 import { langInfo } from "../constants";
 
 export const apiHandler =
   (
-    route: string
+    route: string,
+    method: RequestMethod
   ): ((req: Request, res: Response, next: NextFunction) => Promise<void>) =>
-  async (_, res) => {
-    const results: Partial<Record<languages, unknown>> = {};
-    const stats: Partial<Record<languages, number | "error">> = {};
+  async (req, res) => {
+    const results: Partial<Record<Languages, unknown>> = {};
+    const stats: Partial<Stats> = {};
 
     const promises = Object.entries(langInfo).map(async ([rawLang, port]) => {
-      const lang = rawLang as languages;
+      const lang = rawLang as Languages;
       try {
         const startTime = Date.now();
-        const res = await fetch(`http://127.0.0.1:${port}/${route}`);
+        const fetchOptions =
+          method === "POST" ? { method: "POST", body: req.body } : {};
+        const res = await fetch(
+          `http://127.0.0.1:${port}/${route}`,
+          fetchOptions
+        );
         const endTime = Date.now();
         const data = await res.json();
         results[lang] = data;
