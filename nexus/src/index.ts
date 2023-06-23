@@ -8,7 +8,7 @@ export const app = express();
 for (const route of getRoutes)
   app.get(`/${route}`, asyncHandler(apiHandler(route, "GET")));
 for (const route of postRoutes)
-  app.get(`/${route}`, asyncHandler(apiHandler(route, "POST")));
+  app.post(`/${route}`, asyncHandler(apiHandler(route, "POST")));
 
 const main = async (): Promise<void> => {
   app.listen(nexusPort, () => {

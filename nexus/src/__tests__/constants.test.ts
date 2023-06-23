@@ -63,7 +63,7 @@ describe("Constants", () => {
   });
 
   test("langInfo and routes should have the correct structure", () => {
-    const { langInfo, routes } = require("../constants.ts"); // eslint-disable-line @typescript-eslint/no-var-requires
+    const { langInfo, getRoutes, postRoutes } = require("../constants.ts"); // eslint-disable-line @typescript-eslint/no-var-requires
 
     expect(langInfo).toMatchObject({
       TypeScript: expect.any(Number),
@@ -72,6 +72,7 @@ describe("Constants", () => {
       Go: expect.any(Number),
     });
 
-    expect(routes).toEqual(expect.arrayContaining(["ping"]));
+    expect(getRoutes).toEqual(expect.arrayContaining(["ping"]));
+    expect(postRoutes).toEqual(expect.arrayContaining(["normalize"]));
   });
 });
