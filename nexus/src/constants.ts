@@ -1,4 +1,4 @@
-import type { languages } from "./types";
+import type { Languages } from "./types";
 
 export const PROD = process.env.NODE_ENV === "production";
 export const nexusPort = PROD ? Number(process.env.NEXUS_PORT) : 4000;
@@ -7,7 +7,7 @@ export const pythonPort = PROD ? Number(process.env.PYTHON_PORT) : 4002;
 export const rubyPort = PROD ? Number(process.env.RUBY_PORT) : 4003;
 export const goPort = PROD ? Number(process.env.GO_PORT) : 4004;
 
-export const langInfo: Record<languages, number> = {
+export const langInfo: Record<Languages, number> = {
   TypeScript: typescriptPort,
   Python: pythonPort,
   Ruby: rubyPort,
