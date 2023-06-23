@@ -1,4 +1,4 @@
-import { constructPostOptions } from "src/utils";
+import { constructPostOptions } from "../../utils";
 import type { Stats } from "../../types";
 
 describe("Nexus API Endpoints", () => {

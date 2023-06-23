@@ -1,7 +1,7 @@
 import type { Languages, RequestMethod, Stats } from "../types";
 import type { Request, Response, NextFunction } from "express";
 import { langInfo } from "../constants";
-import { constructPostOptions } from "src/utils";
+import { constructPostOptions } from "../utils";
 
 export const apiHandler =
   (
